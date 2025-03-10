@@ -1,42 +1,122 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General Container */
+.container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   text-align: center;
 }
 
+/* Heading and Logo */
+.heading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.heading-title {
+  font-size: 3rem;
+  font-weight: normal;
+  color: black;
+  font-family: Georgia, serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.heading-subtitle {
+  font-size: 1.2rem;
+  color: #555;
 }
 
-.card {
-  padding: 2em;
+.highlight {
+  font-weight: bold;
 }
 
-.read-the-docs {
-  color: #888;
+/* Article Cards */
+.article-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.article-card {
+  width: 200px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.article-card.correct {
+  border: 2px solid #28a745; /* Green */
+}
+
+.article-card.incorrect {
+  border: 2px solid #dc3545; /* Red */
+}
+
+.article-card-body {
+  padding: 10px;
+}
+
+.article-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.article-snippet {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Result Alert */
+.alert {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 1.2rem;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+.alert-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.alert-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* New Game Button */
+.new-game-button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background-color 0.3s ease;
+}
+
+.new-game-button:hover {
+  background-color: #0056b3;
 }
