@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";  // Import custom CSS for styles
 
 interface Article {
   id: string;
@@ -164,31 +165,18 @@ const articles: Article[] = [
   },
 ];
 
+
 const Result = ({ result }: { result: string }) => {
   if (!result) return null;
 
   const alertClass = result.includes("✅") ? "alert-success" : "alert-danger";
 
-  return (
-    <div className={`alert ${alertClass}`} role="alert">
-      {result}
-    </div>
-  );
+  return <div className={`alert ${alertClass}`}>{result}</div>;
 };
 
 function NewGameButton({ onClick }: { onClick: () => void }) {
   return (
-    <button
-      className="btn btn-online-primary"
-      onClick={onClick}
-      style={{
-        position: "fixed",
-        bottom: "20px",
-        left: "50%",
-        transform: "translateX(-50%)",
-        marginBottom: "0",
-      }}
-    >
+    <button className="new-game-button" onClick={onClick}>
       Fresh Set
     </button>
   );
@@ -197,12 +185,12 @@ function NewGameButton({ onClick }: { onClick: () => void }) {
 function Heading() {
   return (
     <>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1rem" }}>
-        <img src="Fakipedia's_F.svg.png" alt="Fakipedia Logo" style={{ width: "50px", height: "auto", margin: "-5px -5px 4px 0" }} />
-        <h2 style={{ fontFamily: "Georgia, serif", fontSize: "3rem", fontWeight: "normal", color: "black" }}>akipedia</h2>
+      <div className="heading-container">
+        <img src="Fakipedia's_F.svg.png" alt="Fakipedia Logo" className="logo" />
+        <h2 className="heading-title">Fakipedia</h2>
       </div>
-      <h5 style={{ textAlign: "center" }}>
-        Can you spot the <span style={{ fontWeight: "bold" }}>FAKE article</span> from the <span style={{ fontWeight: "bold" }}>REAL ones</span>?
+      <h5 className="heading-subtitle">
+        Can you spot the <span className="highlight">FAKE article</span> from the <span className="highlight">REAL ones</span>?
       </h5>
     </>
   );
@@ -251,28 +239,26 @@ export default function App() {
   };
 
   return (
-    <Container className="mt-4">
+    <div className="container">
       <Heading />
-      <br />
-      <Row>
+      <div className="article-list">
         {articleList.map((article) => (
-          <Col key={article.id} xs={12} md={6}>
-            <Card
-              className={`mb-3 ${selectedArticle?.id === article.id ? (article.id === correctArticle?.id ? "border-success" : "border-danger") : ""}`}
-              onClick={() => handleSelect(article)}
-            >
-              <Card.Body>
-                <Card.Title>{article.title}</Card.Title>
-                <Card.Text>{article.snippet}</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
+          <div
+            key={article.id}
+            className={`article-card ${selectedArticle?.id === article.id ? (article.id === correctArticle?.id ? "correct" : "incorrect") : ""}`}
+            onClick={() => handleSelect(article)}
+          >
+            <div className="article-card-body">
+              <h3 className="article-title">{article.title}</h3>
+              <p className="article-snippet">{article.snippet}</p>
+            </div>
+          </div>
         ))}
-      </Row>
-      <div style={{ textAlign: "center", fontSize: "1.2rem" }}>
+      </div>
+      <div className="result-container">
         <Result result={result} />
       </div>
       <NewGameButton onClick={fetchArticles} />
-    </Container>
+    </div>
   );
 }
